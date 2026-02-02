@@ -9,4 +9,7 @@ config SRCARCH
 	string
 	option env="SRCARCH"
 
+source "utils/Kconfig"
+
 source "arch/$SRCARCH/Kconfig"
+
