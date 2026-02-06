@@ -982,47 +982,24 @@ static void update_cpumasks_hier(struct cpuset *cs, struct cpumask *new_cpus)
 static int update_cpumask(struct cpuset *cs, struct cpuset *trialcs,
 			  const char *buf)
 {
-	int retval;
+        /* top_cpuset.cpus_allowed tracks cpu_online_mask; it's read-only */
+        if (cs == &top_cpuset)
+                return -EACCES;
 
-	/* top_cpuset.cpus_allowed tracks cpu_online_mask; it's read-only */
-	if (cs == &top_cpuset)
-		return -EACCES;
+        /*
+         * Force all cpusets to always use all possible CPUs.
+         * Ignore any writes from userspace (Android task profiles).
+         */
+        spin_lock_irq(&callback_lock);
+        cpumask_copy(cs->cpus_allowed, cpu_possible_mask);
+        cpumask_copy(cs->cpus_requested, cpu_possible_mask);
+        spin_unlock_irq(&callback_lock);
 
-	/*
-	 * An empty cpus_requested is ok only if the cpuset has no tasks.
-	 * Since cpulist_parse() fails on an empty mask, we special case
-	 * that parsing.  The validate_change() call ensures that cpusets
-	 * with tasks have cpus.
-	 */
-	if (!*buf) {
-		cpumask_clear(trialcs->cpus_requested);
-	} else {
-		retval = cpulist_parse(buf, trialcs->cpus_requested);
-		if (retval < 0)
-			return retval;
-	}
+        /* propagate to children using trialcs as a temporary mask */
+        cpumask_copy(trialcs->cpus_allowed, cpu_possible_mask);
+        update_cpumasks_hier(cs, trialcs->cpus_allowed);
 
-	if (!cpumask_subset(trialcs->cpus_requested, cpu_present_mask))
-		return -EINVAL;
-
-	cpumask_and(trialcs->cpus_allowed, trialcs->cpus_requested, cpu_active_mask);
-
-	/* Nothing to do if the cpus didn't change */
-	if (cpumask_equal(cs->cpus_requested, trialcs->cpus_requested))
-		return 0;
-
-	retval = validate_change(cs, trialcs);
-	if (retval < 0)
-		return retval;
-
-	spin_lock_irq(&callback_lock);
-	cpumask_copy(cs->cpus_allowed, trialcs->cpus_allowed);
-	cpumask_copy(cs->cpus_requested, trialcs->cpus_requested);
-	spin_unlock_irq(&callback_lock);
-
-	/* use trialcs->cpus_allowed as a temp variable */
-	update_cpumasks_hier(cs, trialcs->cpus_allowed);
-	return 0;
+        return 0;
 }
 
 /*
