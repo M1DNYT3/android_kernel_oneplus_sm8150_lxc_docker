@@ -5,7 +5,7 @@ config SECURITY_APPARMOR
 	select SECURITY_PATH
 	select SECURITYFS
 	select SECURITY_NETWORK
-	default n
+	default y
 	help
 	  This enables the AppArmor security module.
 	  Required userspace tools (if they are not included in your

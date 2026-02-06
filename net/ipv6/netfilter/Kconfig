@@ -12,7 +12,7 @@ config NF_DEFRAG_IPV6
 config NF_CONNTRACK_IPV6
 	tristate "IPv6 connection tracking support"
 	depends on INET && IPV6 && NF_CONNTRACK
-	default m if NETFILTER_ADVANCED=n
+	default y
 	select NF_DEFRAG_IPV6
 	---help---
 	  Connection tracking keeps a record of what packets have passed
@@ -91,6 +91,7 @@ config NFT_DUP_IPV6
 config NFT_FIB_IPV6
 	tristate "nf_tables fib / ipv6 route lookup support"
 	select NFT_FIB
+	default y
 	help
 	  This module enables IPv6 FIB lookups, e.g. for reverse path filtering.
 	  It also allows query of the FIB for the route type, e.g. local, unicast,
@@ -139,7 +140,7 @@ config IP6_NF_IPTABLES
 	tristate "IP6 tables support (required for filtering)"
 	depends on INET && IPV6
 	select NETFILTER_XTABLES
-	default m if NETFILTER_ADVANCED=n
+	default y
 	help
 	  ip6tables is a general, extensible packet identification framework.
 	  Currently only the packet filtering and packet mangling subsystem
@@ -316,6 +317,7 @@ config IP6_NF_NAT
 	select NF_NAT
 	select NF_NAT_IPV6
 	select NETFILTER_XT_NAT
+	default y
 	help
 	  This enables the `nat' table in ip6tables. This allows masquerading,
 	  port forwarding and other forms of full Network Address Port
@@ -328,6 +330,7 @@ if IP6_NF_NAT
 config IP6_NF_TARGET_MASQUERADE
 	tristate "MASQUERADE target support"
 	select NF_NAT_MASQUERADE_IPV6
+	default y
 	help
 	  Masquerading is a special case of NAT: all outgoing connections are
 	  changed to seem to come from a particular interface's address, and

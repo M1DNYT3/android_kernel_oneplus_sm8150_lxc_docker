@@ -63,6 +63,7 @@ config NFT_DUP_IPV4
 config NFT_FIB_IPV4
 	select NFT_FIB
 	tristate "nf_tables fib / ip route lookup support"
+	default y
 	help
 	  This module enables IPv4 FIB lookups, e.g. for reverse path filtering.
 	  It also allows query of the FIB for the route type, e.g. local, unicast,

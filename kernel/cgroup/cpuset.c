@@ -874,17 +874,24 @@ void rebuild_sched_domains(void)
 }
 
 static int update_cpus_allowed(struct cpuset *cs, struct task_struct *p,
-			       const struct cpumask *new_mask)
+                               const struct cpumask *new_mask)
 {
-	int ret;
+        int ret;
 
-	if (cpumask_subset(&p->cpus_requested, cs->cpus_requested)) {
-		ret = set_cpus_allowed_ptr(p, &p->cpus_requested);
-		if (!ret)
-			return ret;
-	}
+        /*
+         * If userspace explicitly requested an affinity, do not let
+         * cpusets override it.
+         */
+        if (!cpumask_empty(&p->cpus_requested))
+                return set_cpus_allowed_ptr(p, &p->cpus_requested);
 
-	return set_cpus_allowed_ptr(p, new_mask);
+        if (cpumask_subset(&p->cpus_requested, cs->cpus_requested)) {
+                ret = set_cpus_allowed_ptr(p, &p->cpus_requested);
+                if (!ret)
+                        return ret;
+        }
+
+        return set_cpus_allowed_ptr(p, new_mask);
 }
 
 /**
@@ -2436,6 +2443,16 @@ void __init cpuset_init_smp(void)
 
 void cpuset_cpus_allowed(struct task_struct *tsk, struct cpumask *pmask)
 {
+	/*
+	 * If the task has an explicit user-requested affinity,
+	 * honor that here and do not let cpusets clamp it.
+	 */
+	if (!cpumask_empty(&tsk->cpus_requested)) {
+		cpumask_and(pmask, &tsk->cpus_requested, cpu_possible_mask);
+		return;
+	}
+
+	/* Original behavior for tasks without explicit request */
 	unsigned long flags;
 
 	spin_lock_irqsave(&callback_lock, flags);
@@ -2456,13 +2473,29 @@ void cpuset_cpus_allowed(struct task_struct *tsk, struct cpumask *pmask)
  * This is the absolute last resort for the scheduler and it is only used if
  * _every_ other avenue has been traveled.
  **/
-
 void cpuset_cpus_allowed_fallback(struct task_struct *tsk)
 {
+	const struct cpumask *fallback;
+	cpumask_t tmp;
+
 	rcu_read_lock();
-	do_set_cpus_allowed(tsk, is_in_v2_mode() ?
-		task_cs(tsk)->cpus_allowed : cpu_possible_mask);
+
+	if (!cpumask_empty(&tsk->cpus_requested)) {
+		/*
+		 * Respect explicit user affinity, but clamp it to
+		 * cpu_possible_mask so we never end up with invalid CPUs.
+		 */
+		cpumask_and(&tmp, &tsk->cpus_requested, cpu_possible_mask);
+		fallback = &tmp;
+	} else if (is_in_v2_mode()) {
+		fallback = task_cs(tsk)->cpus_allowed;
+	} else {
+		fallback = cpu_possible_mask;
+	}
+
+	do_set_cpus_allowed(tsk, fallback);
 	rcu_read_unlock();
+
 
 	/*
 	 * We own tsk->cpus_allowed, nobody can change it under us.
@@ -2781,3 +2814,4 @@ void cpuset_task_status_allowed(struct seq_file *m, struct task_struct *task)
 	seq_printf(m, "Mems_allowed_list:\t%*pbl\n",
 		   nodemask_pr_args(&task->mems_allowed));
 }
+

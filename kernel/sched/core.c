@@ -1602,10 +1602,31 @@ static int select_fallback_rq(int cpu, struct task_struct *p, bool allow_iso)
 				break;
 			}
 			/* Fall-through */
-		case possible:
-			do_set_cpus_allowed(p, cpu_possible_mask);
+		case possible: {
+			cpumask_t tmp;
+
+			/*
+			 * If userspace explicitly requested an affinity
+			 * (cpus_requested), prefer that over blindly widening
+			 * to cpu_possible_mask.
+			 */
+			if (!cpumask_empty(&p->cpus_requested)) {
+				cpumask_and(&tmp, &p->cpus_requested, cpu_possible_mask);
+			} else {
+				cpumask_copy(&tmp, cpu_possible_mask);
+			}
+
+			/* Optional: avoid isolated CPUs if possible. */
+			cpumask_andnot(&tmp, &tmp, cpu_isolated_mask);
+			if (cpumask_empty(&tmp)) {
+				/* All requested CPUs are isolated; fall back to full possible. */
+				cpumask_copy(&tmp, cpu_possible_mask);
+			}
+
+			do_set_cpus_allowed(p, &tmp);
 			state = fail;
 			break;
+		}
 
 		case fail:
 			allow_iso = true;
@@ -5004,6 +5025,10 @@ long sched_setaffinity(pid_t pid, const struct cpumask *in_mask)
 	if (retval)
 		goto out_free_new_mask;
 
+	if (!(p->flags & PF_KTHREAD))
+		cpumask_and(&p->cpus_requested, in_mask, cpu_possible_mask);
+	else
+		cpumask_clear(&p->cpus_requested);
 
 	cpuset_cpus_allowed(p, cpus_allowed);
 	cpumask_and(new_mask, in_mask, cpus_allowed);
@@ -5045,9 +5070,6 @@ again:
 	} else {
 		retval = -EINVAL;
 	}
-
-	if (!retval && !(p->flags & PF_KTHREAD))
-		cpumask_and(&p->cpus_requested, in_mask, cpu_possible_mask);
 
 out_free_new_mask:
 	free_cpumask_var(new_mask);
@@ -5162,37 +5184,39 @@ SYSCALL_DEFINE3(sched_setaffinity, pid_t, pid, unsigned int, len,
 
 long sched_getaffinity(pid_t pid, struct cpumask *mask)
 {
-	struct task_struct *p;
-	unsigned long flags;
-	int retval;
+        struct task_struct *p;
+        unsigned long flags;
+        int retval;
 
-	rcu_read_lock();
+        rcu_read_lock();
 
-	retval = -ESRCH;
-	p = find_process_by_pid(pid);
-	if (!p)
-		goto out_unlock;
+        retval = -ESRCH;
+        p = find_process_by_pid(pid);
+        if (!p)
+                goto out_unlock;
 
-	retval = security_task_getscheduler(p);
-	if (retval)
-		goto out_unlock;
+        retval = security_task_getscheduler(p);
+        if (retval)
+                goto out_unlock;
 
-	raw_spin_lock_irqsave(&p->pi_lock, flags);
-	cpumask_and(mask, &p->cpus_allowed, cpu_active_mask);
+        raw_spin_lock_irqsave(&p->pi_lock, flags);
+        cpumask_and(mask, &p->cpus_allowed, cpu_active_mask);
 
-	/* The userspace tasks are forbidden to run on
-	 * isolated CPUs. So exclude isolated CPUs from
-	 * the getaffinity.
-	 */
-	if (!(p->flags & PF_KTHREAD))
-		cpumask_andnot(mask, mask, cpu_isolated_mask);
+        /*
+         * For tasks without an explicit user-requested affinity,
+         * keep the original policy of hiding isolated CPUs.
+         * If userspace explicitly requested an affinity
+         * (cpus_requested), report the true mask.
+         */
+        if (cpumask_empty(&p->cpus_requested) && !(p->flags & PF_KTHREAD))
+                cpumask_andnot(mask, mask, cpu_isolated_mask);
 
-	raw_spin_unlock_irqrestore(&p->pi_lock, flags);
+        raw_spin_unlock_irqrestore(&p->pi_lock, flags);
 
 out_unlock:
-	rcu_read_unlock();
+        rcu_read_unlock();
 
-	return retval;
+        return retval;
 }
 
 /**
