@@ -39,6 +39,7 @@ config UEVENT_HELPER_PATH
 
 config DEVTMPFS
 	bool "Maintain a devtmpfs filesystem to mount at /dev"
+	default y
 	help
 	  This creates a tmpfs/ramfs filesystem instance early at bootup.
 	  In this filesystem, the kernel driver core maintains device
@@ -59,6 +60,7 @@ config DEVTMPFS
 config DEVTMPFS_MOUNT
 	bool "Automount devtmpfs at /dev, after the kernel mounted the rootfs"
 	depends on DEVTMPFS
+	default y
 	help
 	  This will instruct the kernel to automatically mount the
 	  devtmpfs filesystem at /dev, directly after the kernel has
