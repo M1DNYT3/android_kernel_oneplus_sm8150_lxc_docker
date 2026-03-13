@@ -23,7 +23,7 @@ On boot, you may see: "There's an internal problem with your device." This is ex
 - IMPORTANT: "Manual deadlock shield" should be disabled when configuring the container. Otherwise, Docker and Systemd sandboxing will not work.
 - Works with DroidSpaces-OSS:
   https://github.com/ravindu644/Droidspaces-OSS
-- Link to kernel release: **[placeholder]**
+- Link to kernel release: **[Release 1.2 (LOS 18.1)](https://github.com/M1DNYT3/android_kernel_oneplus_sm8150_lxc_docker/releases/tag/18.1-LXC-1.2-Stable)**
 
 ## LXC -> Docker (Rootful)
 Status: Works on all releases, Recommended #2
