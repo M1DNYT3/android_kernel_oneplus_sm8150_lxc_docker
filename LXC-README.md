@@ -26,28 +26,28 @@ On boot, you may see: "There's an internal problem with your device." This is ex
 - Link to kernel release: **[Release 1.2 (LOS 18.1)](https://github.com/M1DNYT3/android_kernel_oneplus_sm8150_lxc_docker/releases/tag/18.1-LXC-1.2-Stable)**
 
 ## LXC -> Docker (Rootful)
-Status: Works on all releases, Recommended #2
-Requirements: privileged LXC, security.nesting=true, AppArmor relaxed (lxc.apparmor.profile=unconfined)  
-Storage driver: overlay2 or fuse-overlayfs
+- Status: Works on all releases, Recommended #2
+- Requirements: privileged LXC, security.nesting=true, AppArmor relaxed (lxc.apparmor.profile=unconfined)  
+- Storage driver: overlay2 or fuse-overlayfs
 
 ## LXC -> Docker (Rootless)
-Status: Limited  
-Notes: Runs, but no cgroup limits on v1
+- Status: Limited  
+- Notes: Runs, but no cgroup limits on v1
 
 ## chroot -> Docker (Rootful)
-Status: Works  
-Requirements: namespaces, cgroup v1 controllers, networking, overlayfs/fuse-overlayfs
+- Status: Works  
+- Requirements: namespaces, cgroup v1 controllers, networking, overlayfs/fuse-overlayfs
 
 ## chroot -> Docker (Rootless)
-Status: Limited  
-Notes: No cgroup limits; additional manual setup required
+- Status: Limited  
+- Notes: No cgroup limits; additional manual setup required
 
 ## Termux (native root, not proot) -> Docker
-Rootful: Works  
-Rootless: Limited (no cgroup limits)
+- Rootful: Works  
+- Rootless: Limited (no cgroup limits)
 
 ## Termux (proot) -> Docker
-Not supported
+- Not supported
 
 # Optional LXC Module
 A ready-to-use LXC Magisk module exists:
