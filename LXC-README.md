@@ -28,7 +28,7 @@ On boot, you may see: "There's an internal problem with your device." This is ex
 ## LXC -> Docker (Rootful)
 - Status: Works on all releases, Recommended #2
 - Requirements: privileged LXC, security.nesting=true, AppArmor relaxed (lxc.apparmor.profile=unconfined)  
-- Storage driver: overlay2 or fuse-overlayfs
+- Storage driver: overlay2 or fuse-overlayfs (support added in v1.1)
 
 ## LXC -> Docker (Rootless)
 - Status: Limited  
