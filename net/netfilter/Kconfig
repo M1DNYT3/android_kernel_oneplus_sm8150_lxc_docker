@@ -14,6 +14,7 @@ config NETFILTER_NETLINK
 
 config NETFILTER_NETLINK_ACCT
 tristate "Netfilter NFACCT over NFNETLINK interface"
+default y
 	depends on NETFILTER_ADVANCED
 	select NETFILTER_NETLINK
 	help
@@ -268,6 +269,7 @@ config NF_CONNTRACK_NETBIOS_NS
 
 config NF_CONNTRACK_SNMP
 	tristate "SNMP service protocol support"
+	default y
 	depends on NETFILTER_ADVANCED
 	select NF_CONNTRACK_BROADCAST
 	help
@@ -315,7 +317,7 @@ config NF_CONNTRACK_SANE
 
 config NF_CONNTRACK_SIP
 	tristate "SIP protocol support"
-	default m if NETFILTER_ADVANCED=n
+	default y
 	help
 	  SIP is an application-layer control protocol that can establish,
 	  modify, and terminate multimedia sessions (conferences) such as

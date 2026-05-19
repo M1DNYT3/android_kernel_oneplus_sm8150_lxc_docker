@@ -5,6 +5,7 @@
 
 menuconfig WATCHDOG
 	bool "Watchdog Timer Support"
+	default y
 	---help---
 	  If you say Y here (and to one of the following options) and create a
 	  character special file /dev/watchdog with major number 10 and minor

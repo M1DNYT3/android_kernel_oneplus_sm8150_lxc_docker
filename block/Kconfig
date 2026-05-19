@@ -98,6 +98,7 @@ config BLK_DEV_INTEGRITY
 
 config BLK_DEV_ZONED
 	bool "Zoned block device support"
+	default y
 	---help---
 	Block layer zoned block device support. This option enables
 	support for ZAC/ZBC host-managed and host-aware zoned block devices.
@@ -141,7 +142,7 @@ config BLK_CMDLINE_PARSER
 
 config BLK_WBT
 	bool "Enable support for block device writeback throttling"
-	default n
+	default y
 	---help---
 	Enabling this option enables the block layer to throttle buffered
 	background writeback from the VM, making it more smooth and having
@@ -179,6 +180,7 @@ config BLK_DEBUG_FS
 
 config BLK_SED_OPAL
 	bool "Logic for interfacing with Opal enabled SEDs"
+	default y
 	---help---
 	Builds Logic for interfacing with Opal enabled controllers.
 	Enabling this option enables users to setup/unlock/lock

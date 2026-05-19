@@ -7,7 +7,7 @@ config TLS
 	select CRYPTO
 	select CRYPTO_AES
 	select CRYPTO_GCM
-	default n
+	default m
 	---help---
 	Enable kernel support for TLS protocol. This allows symmetric
 	encryption handling of the TLS protocol to be done in-kernel.

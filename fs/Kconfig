@@ -73,6 +73,7 @@ config EXPORTFS
 
 config EXPORTFS_BLOCK_OPS
 	bool "Enable filesystem export operations for block IO"
+	default y
 	help
 	  This option enables the export operations for a filesystem to support
 	  external block IO.

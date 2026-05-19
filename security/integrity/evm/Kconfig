@@ -4,7 +4,7 @@ config EVM
 	select ENCRYPTED_KEYS
 	select CRYPTO_HMAC
 	select CRYPTO_SHA1
-	default n
+	default y
 	help
 	  EVM protects a file's security extended attributes against
 	  integrity attacks.

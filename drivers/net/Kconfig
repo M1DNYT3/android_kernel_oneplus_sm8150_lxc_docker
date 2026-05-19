@@ -133,6 +133,7 @@ config MACVLAN
 
 config MACVTAP
 	tristate "MAC-VLAN based tap driver"
+	default m
 	depends on MACVLAN
 	depends on INET
 	select TAP
@@ -197,6 +198,7 @@ config VXLAN
 
 config GENEVE
        tristate "Generic Network Virtualization Encapsulation"
+       default y
        depends on INET && NET_UDP_TUNNEL
        select NET_IP_TUNNEL
        select GRO_CELLS
@@ -212,6 +214,7 @@ config GENEVE
 
 config GTP
 	tristate "GPRS Tunneling Protocol datapath (GTP-U)"
+	default m
 	depends on INET
 	select NET_UDP_TUNNEL
 	---help---
@@ -229,6 +232,7 @@ config GTP
 
 config MACSEC
 	tristate "IEEE 802.1AE MAC-level encryption (MACsec)"
+	default n
 	select CRYPTO
 	select CRYPTO_AES
 	select CRYPTO_GCM
@@ -238,6 +242,7 @@ config MACSEC
 
 config NETCONSOLE
 	tristate "Network console logging support"
+	default m
 	---help---
 	If you want to log kernel messages over the network, enable this.
 	See <file:Documentation/networking/netconsole.txt> for details.
@@ -253,6 +258,7 @@ config NETCONSOLE_DYNAMIC
 	  See <file:Documentation/networking/netconsole.txt> for details.
 
 config NETPOLL
+	default y
 	def_bool NETCONSOLE
 	select SRCU
 
@@ -357,6 +363,7 @@ config NLMON
 
 config NET_VRF
 	tristate "Virtual Routing and Forwarding (Lite)"
+	default y
 	depends on IP_MULTIPLE_TABLES
 	depends on NET_L3_MASTER_DEV
 	depends on IPV6 || IPV6=n

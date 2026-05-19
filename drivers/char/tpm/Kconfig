@@ -4,6 +4,7 @@
 
 menuconfig TCG_TPM
 	tristate "TPM Hardware Support"
+	default m
 	depends on HAS_IOMEM
 	select SECURITYFS
 	select CRYPTO

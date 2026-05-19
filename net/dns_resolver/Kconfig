@@ -3,6 +3,7 @@
 #
 config DNS_RESOLVER
 	tristate "DNS Resolver support"
+	default y
 	depends on NET && KEYS
 	help
 	  Saying Y here will include support for the DNS Resolver key type

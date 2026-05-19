@@ -282,6 +282,7 @@ config CRYPTO_GCM
 
 config CRYPTO_CHACHA20POLY1305
 	tristate "ChaCha20-Poly1305 AEAD support"
+	default m
 	select CRYPTO_CHACHA20
 	select CRYPTO_POLY1305
 	select CRYPTO_AEAD
@@ -525,6 +526,7 @@ config CRYPTO_CRC32_PCLMUL
 
 config CRYPTO_CRCT10DIF
 	tristate "CRCT10DIF algorithm"
+	default m
 	select CRYPTO_HASH
 	help
 	  CRC T10 Data Integrity Field computation is being cast as
@@ -568,6 +570,7 @@ config CRYPTO_GHASH
 
 config CRYPTO_POLY1305
 	tristate "Poly1305 authenticator algorithm"
+	default m
 	select CRYPTO_HASH
 	help
 	  Poly1305 authenticator algorithm, RFC7539.
@@ -590,6 +593,7 @@ config CRYPTO_POLY1305_X86_64
 
 config CRYPTO_MD4
 	tristate "MD4 digest algorithm"
+	default m
 	select CRYPTO_HASH
 	help
 	  MD4 message digest algorithm (RFC1320).
@@ -628,6 +632,7 @@ config CRYPTO_MD5_SPARC64
 
 config CRYPTO_MICHAEL_MIC
 	tristate "Michael MIC keyed digest algorithm"
+	default m
 	select CRYPTO_HASH
 	help
 	  Michael MIC is used for message integrity protection in TKIP
@@ -880,6 +885,7 @@ config CRYPTO_SHA512_SPARC64
 
 config CRYPTO_SHA3
 	tristate "SHA3 digest algorithm"
+	default m
 	select CRYPTO_HASH
 	help
 	  SHA-3 secure hash standard (DFIPS 202). It's based on
@@ -1355,6 +1361,7 @@ config CRYPTO_SALSA20
 
 config CRYPTO_CHACHA20
 	tristate "ChaCha stream cipher algorithms"
+	default m
 	select CRYPTO_BLKCIPHER
 	help
 	  The ChaCha20, XChaCha20, and XChaCha12 stream cipher algorithms.
@@ -1658,6 +1665,7 @@ config CRYPTO_842
 
 config CRYPTO_LZ4
 	tristate "LZ4 compression algorithm"
+	default m
 	select CRYPTO_ALGAPI
 	select CRYPTO_ACOMP2
 	select LZ4_COMPRESS
@@ -1667,6 +1675,7 @@ config CRYPTO_LZ4
 
 config CRYPTO_LZ4HC
 	tristate "LZ4HC compression algorithm"
+	default m
 	select CRYPTO_ALGAPI
 	select CRYPTO_ACOMP2
 	select LZ4HC_COMPRESS
@@ -1676,6 +1685,7 @@ config CRYPTO_LZ4HC
 
 config CRYPTO_ZSTD
 	tristate "Zstd compression algorithm"
+	default m
 	select CRYPTO_ALGAPI
 	select CRYPTO_ACOMP2
 	select ZSTD_COMPRESS
@@ -1745,6 +1755,7 @@ config CRYPTO_USER_API
 
 config CRYPTO_USER_API_HASH
 	tristate "User-space interface for hash algorithms"
+	default m
 	depends on NET
 	select CRYPTO_HASH
 	select CRYPTO_USER_API
@@ -1754,6 +1765,7 @@ config CRYPTO_USER_API_HASH
 
 config CRYPTO_USER_API_SKCIPHER
 	tristate "User-space interface for symmetric key cipher algorithms"
+	default m
 	depends on NET
 	select CRYPTO_BLKCIPHER
 	select CRYPTO_USER_API
@@ -1763,6 +1775,7 @@ config CRYPTO_USER_API_SKCIPHER
 
 config CRYPTO_USER_API_RNG
 	tristate "User-space interface for random number generator algorithms"
+	default m
 	depends on NET
 	select CRYPTO_RNG
 	select CRYPTO_USER_API
@@ -1772,6 +1785,7 @@ config CRYPTO_USER_API_RNG
 
 config CRYPTO_USER_API_AEAD
 	tristate "User-space interface for AEAD cipher algorithms"
+	default m
 	depends on NET
 	select CRYPTO_AEAD
 	select CRYPTO_BLKCIPHER

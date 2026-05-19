@@ -30,6 +30,7 @@ config PROC_FS
 
 config PROC_KCORE
 	bool "/proc/kcore support" if !ARM
+	default y
 	depends on PROC_FS && MMU
 	help
 	  Provides a virtual ELF core file of the live kernel.  This can

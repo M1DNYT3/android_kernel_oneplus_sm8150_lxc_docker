@@ -1,5 +1,6 @@
 config HFS_FS
 	tristate "Apple Macintosh file system support"
+	default m
 	depends on BLOCK
 	select NLS
 	help

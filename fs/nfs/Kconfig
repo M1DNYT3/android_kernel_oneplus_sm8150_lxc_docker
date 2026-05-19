@@ -1,5 +1,6 @@
 config NFS_FS
 	tristate "NFS client support"
+	default m
 	depends on INET && FILE_LOCKING && MULTIUSER
 	select LOCKD
 	select SUNRPC
@@ -73,6 +74,7 @@ config NFS_V3_ACL
 
 config NFS_V4
 	tristate "NFS client support for NFS version 4"
+	default y
 	depends on NFS_FS
 	select SUNRPC_GSS
 	select KEYS
@@ -96,6 +98,7 @@ config NFS_SWAP
 
 config NFS_V4_1
 	bool "NFS client support for NFSv4.1"
+	default y
 	depends on NFS_V4
 	select SUNRPC_BACKCHANNEL
 	help
@@ -106,6 +109,7 @@ config NFS_V4_1
 
 config NFS_V4_2
 	bool "NFS client support for NFSv4.2"
+	default y
 	depends on NFS_V4_1
 	help
 	  This option enables support for minor version 2 of the NFSv4 protocol
@@ -159,6 +163,7 @@ config NFS_V4_SECURITY_LABEL
 
 config ROOT_NFS
 	bool "Root file system on NFS"
+	default y
 	depends on NFS_FS=y && IP_PNP
 	help
 	  If you want your system to mount its root file system via NFS,

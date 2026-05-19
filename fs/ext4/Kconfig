@@ -3,6 +3,7 @@
 # kernels after the removal of ext3 driver.
 config EXT3_FS
 	tristate "The Extended 3 (ext3) filesystem"
+	default y
 	# These must match EXT4_FS selects...
 	select EXT4_FS
 	select JBD2

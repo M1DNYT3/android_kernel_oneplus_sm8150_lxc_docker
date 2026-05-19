@@ -161,6 +161,7 @@ if FTRACE
 
 config FUNCTION_TRACER
 	bool "Kernel Function Tracer"
+	default y
 	depends on HAVE_FUNCTION_TRACER
 	select KALLSYMS
 	select GENERIC_TRACER
@@ -307,6 +308,7 @@ config ENABLE_DEFAULT_TRACERS
 
 config FTRACE_SYSCALLS
 	bool "Trace syscalls"
+	default y
 	depends on HAVE_SYSCALL_TRACEPOINTS
 	select GENERIC_TRACER
 	select KALLSYMS
@@ -425,6 +427,7 @@ config BRANCH_TRACER
 
 config STACK_TRACER
 	bool "Trace max stack"
+	default y
 	depends on HAVE_FUNCTION_TRACER
 	select FUNCTION_TRACER
 	select STACKTRACE

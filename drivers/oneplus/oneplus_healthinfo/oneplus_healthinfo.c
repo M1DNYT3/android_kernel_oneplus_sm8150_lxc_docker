@@ -101,7 +101,9 @@ struct cpu_preempt_stat preempt_para[NR_CPUS];
 #ifdef CONFIG_ONEPLUS_TASKLOAD_INFO
 static struct timer_list task_load_info_timer;
 u64 ohm_read_thresh = 1048576; /* default 1MB per 5s */
+EXPORT_SYMBOL(ohm_read_thresh);
 u64 ohm_write_thresh = 1048576; /* default 1MB per 5s */
+EXPORT_SYMBOL(ohm_write_thresh);
 u64 ohm_runtime_thresh_fg = 4000000000; /* default 4s per 5s */
 u64 ohm_runtime_thresh_bg = 1500000000; /* default 1.5s per 5s */
 static u32 ohm_sample_time = 5; /* default 5s */

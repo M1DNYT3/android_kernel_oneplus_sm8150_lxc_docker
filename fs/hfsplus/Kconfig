@@ -1,5 +1,6 @@
 config HFSPLUS_FS
 	tristate "Apple Extended HFS file system support"
+	default m
 	depends on BLOCK
 	select NLS
 	select NLS_UTF8

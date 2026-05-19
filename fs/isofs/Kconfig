@@ -1,5 +1,6 @@
 config ISO9660_FS
 	tristate "ISO 9660 CDROM file system support"
+	default m
 	help
 	  This is the standard file system used on CD-ROMs.  It was previously
 	  known as "High Sierra File System" and is called "hsfs" on other

@@ -310,6 +310,7 @@ config BPF_JIT
 
 config BPF_STREAM_PARSER
 	bool "enable BPF STREAM_PARSER"
+	default y
 	depends on BPF_SYSCALL
 	select STREAM_PARSER
 	---help---
@@ -345,6 +346,7 @@ menu "Network testing"
 
 config NET_PKTGEN
 	tristate "Packet Generator (USE WITH CAUTION)"
+	default m
 	depends on INET && PROC_FS
 	---help---
 	  This module will inject preconfigured packets, at a configurable
@@ -377,6 +379,7 @@ config NET_TCPPROBE
 
 config NET_DROP_MONITOR
 	tristate "Network packet drop alerting service"
+	default m
 	depends on INET && TRACEPOINTS
 	---help---
 	This feature provides an alerting service to userspace in the
@@ -424,6 +427,7 @@ source "net/ife/Kconfig"
 
 config LWTUNNEL
 	bool "Network light weight tunnels"
+	default y
 	---help---
 	  This feature provides an infrastructure to support light weight
 	  tunnels like mpls. There is no netdevice associated with a light

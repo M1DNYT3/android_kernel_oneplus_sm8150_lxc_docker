@@ -81,6 +81,7 @@ config DOCKER
         select NETFILTER_XT_MATCH_IPVS
         select IP_VS_RR
         #select SECURITY_APPARMOR
+        select VLAN_8021Q
         select BRIDGE_VLAN_FILTERING
         #select IP6_NF_TARGET_MASQUERADE
         select NETFILTER_XT_TARGET_CHECKSUM
@@ -106,7 +107,7 @@ config DOCKER_STATISTICS
 	select BLK_CGROUP
 	select IOSCHED_CFQ
 	select CGROUP_PERF
-	select CFS_BANDWIDTH
+	select CFS_BANDWIDTH if !SCHED_WALT
 
 ## Required kernel version: 4.5
 

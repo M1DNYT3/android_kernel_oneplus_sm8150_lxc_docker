@@ -19,6 +19,7 @@ config FUSE_FS
 
 config CUSE
 	tristate "Character device in Userspace support"
+	default m
 	depends on FUSE_FS
 	help
 	  This FUSE extension allows character devices to be

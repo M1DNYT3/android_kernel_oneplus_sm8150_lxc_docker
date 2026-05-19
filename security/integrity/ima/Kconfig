@@ -2,6 +2,7 @@
 #
 config IMA
 	bool "Integrity Measurement Architecture(IMA)"
+	default y
 	select SECURITYFS
 	select CRYPTO
 	select CRYPTO_HMAC

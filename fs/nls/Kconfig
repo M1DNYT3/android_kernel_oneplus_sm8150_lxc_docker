@@ -75,6 +75,7 @@ config NLS_CODEPAGE_775
 
 config NLS_CODEPAGE_850
 	tristate "Codepage 850 (Europe)"
+	default m
 	---help---
 	  The Microsoft FAT file system family can deal with filenames in
 	  native language character sets. These character sets are stored in
@@ -91,6 +92,7 @@ config NLS_CODEPAGE_850
 
 config NLS_CODEPAGE_852
 	tristate "Codepage 852 (Central/Eastern Europe)"
+	default m
 	---help---
 	  The Microsoft FAT file system family can deal with filenames in
 	  native language character sets. These character sets are stored in
@@ -196,6 +198,7 @@ config NLS_CODEPAGE_865
 
 config NLS_CODEPAGE_866
 	tristate "Codepage 866 (Cyrillic/Russian)"
+	default m
 	help
 	  The Microsoft FAT file system family can deal with filenames in
 	  native language character sets. These character sets are stored in
@@ -219,6 +222,7 @@ config NLS_CODEPAGE_869
 
 config NLS_CODEPAGE_936
 	tristate "Simplified Chinese charset (CP936, GB2312)"
+	default m
 	help
 	  The Microsoft FAT file system family can deal with filenames in
 	  native language character sets. These character sets are stored in
@@ -231,6 +235,7 @@ config NLS_CODEPAGE_936
 
 config NLS_CODEPAGE_950
 	tristate "Traditional Chinese charset (Big5)"
+	default m
 	help
 	  The Microsoft FAT file system family can deal with filenames in
 	  native language character sets. These character sets are stored in
@@ -243,6 +248,7 @@ config NLS_CODEPAGE_950
 
 config NLS_CODEPAGE_932
 	tristate "Japanese charsets (Shift-JIS, EUC-JP)"
+	default m
 	help
 	  The Microsoft FAT file system family can deal with filenames in
 	  native language character sets. These character sets are stored in
@@ -256,6 +262,7 @@ config NLS_CODEPAGE_932
 
 config NLS_CODEPAGE_949
 	tristate "Korean charset (CP949, EUC-KR)"
+	default m
 	help
 	  The Microsoft FAT file system family can deal with filenames in
 	  native language character sets. These character sets are stored in
@@ -310,6 +317,7 @@ config NLS_CODEPAGE_1251
 
 config NLS_ASCII
 	tristate "ASCII (United States)"
+	default y
 	help
 	  An ASCII NLS module is needed if you want to override the
 	  DEFAULT NLS with this very basic charset and don't want any
@@ -329,6 +337,7 @@ config NLS_ISO8859_1
 
 config NLS_ISO8859_2
 	tristate "NLS ISO 8859-2  (Latin 2; Slavic/Central European Languages)"
+	default m
 	help
 	  If you want to display filenames with native language characters
 	  from the Microsoft FAT file system family or from JOLIET CD-ROMs
@@ -360,6 +369,7 @@ config NLS_ISO8859_4
 
 config NLS_ISO8859_5
 	tristate "NLS ISO 8859-5  (Cyrillic)"
+	default m
 	help
 	  If you want to display filenames with native language characters
 	  from the Microsoft FAT file system family or from JOLIET CD-ROMs
@@ -420,6 +430,7 @@ config NLS_ISO8859_14
 
 config NLS_ISO8859_15
 	tristate "NLS ISO 8859-15 (Latin 9; Western European Languages with Euro)"
+	default m
 	---help---
 	  If you want to display filenames with native language characters
 	  from the Microsoft FAT file system family or from JOLIET CD-ROMs
@@ -436,6 +447,7 @@ config NLS_ISO8859_15
 
 config NLS_KOI8_R
 	tristate "NLS KOI8-R (Russian)"
+	default m
 	help
 	  If you want to display filenames with native language characters
 	  from the Microsoft FAT file system family or from JOLIET CD-ROMs
@@ -445,6 +457,7 @@ config NLS_KOI8_R
 
 config NLS_KOI8_U
 	tristate "NLS KOI8-U/RU (Ukrainian, Belarusian)"
+	default m
 	help
 	  If you want to display filenames with native language characters
 	  from the Microsoft FAT file system family or from JOLIET CD-ROMs
@@ -454,6 +467,7 @@ config NLS_KOI8_U
 
 config NLS_MAC_ROMAN
 	tristate "Codepage macroman"
+	default m
 	---help---
 	  The Apple HFS file system family can deal with filenames in
 	  native language character sets. These character sets are stored in
@@ -511,6 +525,7 @@ config NLS_MAC_CROATIAN
 
 config NLS_MAC_CYRILLIC
 	tristate "Codepage maccyrillic"
+	default m
 	---help---
 	  The Apple HFS file system family can deal with filenames in
 	  native language character sets. These character sets are stored in
@@ -609,6 +624,7 @@ config NLS_MAC_TURKISH
 
 config NLS_UTF8
 	tristate "NLS UTF-8"
+	default y
 	help
 	  If you want to display filenames with native language characters
 	  from the Microsoft FAT file system family or from JOLIET CD-ROMs

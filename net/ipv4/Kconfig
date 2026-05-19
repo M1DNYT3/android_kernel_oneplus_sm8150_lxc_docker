@@ -160,6 +160,7 @@ config IP_PNP_RARP
 
 config NET_IPIP
 	tristate "IP: tunneling"
+	default y
 	select INET_TUNNEL
 	select NET_IP_TUNNEL
 	---help---
@@ -178,6 +179,7 @@ config NET_IPIP
 
 config NET_IPGRE_DEMUX
 	tristate "IP: GRE demultiplexer"
+	default y
 	help
 	 This is helper module to demultiplex GRE packets on GRE version field criteria.
 	 Required by ip_gre and pptp modules.
@@ -190,6 +192,7 @@ config NET_IP_TUNNEL
 
 config NET_IPGRE
 	tristate "IP: GRE tunnels over IP"
+	default y
 	depends on (IPV6 || IPV6=n) && NET_IPGRE_DEMUX
 	select NET_IP_TUNNEL
 	help
@@ -214,6 +217,7 @@ config NET_IPGRE_BROADCAST
 
 config IP_MROUTE
 	bool "IP: multicast routing"
+	default y
 	depends on IP_MULTICAST
 	help
 	  This is used if you want your machine to act as a router for IP
@@ -315,6 +319,7 @@ config NET_UDP_TUNNEL
 
 config NET_FOU
 	tristate "IP: Foo (IP protocols) over UDP"
+	default m
 	select XFRM
 	select NET_UDP_TUNNEL
 	---help---
@@ -325,6 +330,7 @@ config NET_FOU
 
 config NET_FOU_IP_TUNNELS
 	bool "IP: FOU encapsulation of IP tunnels"
+	default y
 	depends on NET_IPIP || NET_IPGRE || IPV6_SIT
 	select NET_FOU
 	---help---
@@ -466,6 +472,7 @@ config INET_DIAG_DESTROY
 
 menuconfig TCP_CONG_ADVANCED
 	bool "TCP: advanced congestion control"
+	default y
 	---help---
 	  Support for selection of various TCP congestion control
 	  modules.
@@ -741,6 +748,7 @@ config DEFAULT_TCP_CONG
 
 config TCP_MD5SIG
 	bool "TCP: MD5 Signature Option support (RFC2385)"
+	default y
 	select CRYPTO
 	select CRYPTO_MD5
 	---help---

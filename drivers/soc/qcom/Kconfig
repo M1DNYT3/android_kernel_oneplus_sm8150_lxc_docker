@@ -693,6 +693,7 @@ config MSM_TZ_SMMU
 
 config QTI_RPMH_API
 	bool "QTI RPMH (h/w accelerators) Communication API"
+	depends on ARCH_QCOM
 	select MAILBOX
 	select QTI_RPMH_MBOX
 	select QTI_SYSTEM_PM

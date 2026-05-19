@@ -9,6 +9,7 @@ config QTI_PDC
 
 config QTI_PDC_SM8150
         bool "QTI PDC SM8150"
+        depends on ARCH_QCOM
         select QTI_PDC
         select QTI_PDC_SAVE_RESTORE
         default y if ARCH_SM8150
@@ -17,6 +18,7 @@ config QTI_PDC_SM8150
 
 config QTI_PDC_SM6150
         bool "QTI PDC SM6150"
+        depends on ARCH_QCOM
         select QTI_PDC
         select QTI_PDC_SAVE_RESTORE
         default y if ARCH_SM6150
@@ -25,6 +27,7 @@ config QTI_PDC_SM6150
 
 config QTI_PDC_SDMMAGPIE
         bool "QTI PDC SDMMAGPIE"
+        depends on ARCH_QCOM
         select QTI_PDC
         default y if ARCH_SDMMAGPIE
         help
@@ -35,6 +38,7 @@ config QTI_PDC_SDMMAGPIE
 
 config QTI_PDC_SDXPRAIRIE
         bool "QTI PDC SDXPRAIRIE"
+        depends on ARCH_QCOM
         select QTI_PDC
         default y if ARCH_SDXPRAIRIE
         help
@@ -45,6 +49,7 @@ config QTI_PDC_SDXPRAIRIE
 
 config QTI_PDC_ATOLL
         bool "QTI PDC ATOLL"
+        depends on ARCH_QCOM
         select QTI_PDC
         help
           QTI Power Domain Controller for ATOLL
@@ -63,6 +68,7 @@ config QTI_MPM
 
 config QTI_PDC_VIRT
         bool "QTI PDC VIRT"
+        depends on ARCH_QCOM
         select QTI_PDC
         help
           QTI Power Domain Controller for Virtual platforms

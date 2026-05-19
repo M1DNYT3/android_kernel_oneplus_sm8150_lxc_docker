@@ -1,5 +1,6 @@
 config AFS_FS
 	tristate "Andrew File System support (AFS)"
+	default m
 	depends on INET
 	select AF_RXRPC
 	select DNS_RESOLVER

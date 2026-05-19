@@ -6,7 +6,7 @@ config CEPH_LIB
 	select CRYPTO_CBC
 	select CRYPTO
 	select KEYS
-	default n
+	default m
 	help
 	  Choose Y or M here to include cephlib, which provides the
 	  common functionality to both the Ceph filesystem and

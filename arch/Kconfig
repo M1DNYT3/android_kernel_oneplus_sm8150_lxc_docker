@@ -50,6 +50,7 @@ config OPROFILE_NMI_TIMER
 
 config KPROBES
 	bool "Kprobes"
+	default y
 	depends on MODULES
 	depends on HAVE_KPROBES
 	select KALLSYMS
@@ -62,6 +63,7 @@ config KPROBES
 
 config JUMP_LABEL
        bool "Optimize very unlikely/likely branches"
+       default y
        depends on HAVE_ARCH_JUMP_LABEL
        help
          This option enables a transparent branch optimization that

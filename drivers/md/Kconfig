@@ -14,6 +14,7 @@ if MD
 
 config BLK_DEV_MD
 	tristate "RAID support"
+	default y
 	---help---
 	  This driver lets you combine several hard disk partitions into one
 	  logical block device. This can be used to simply append one
@@ -60,6 +61,7 @@ config MD_LINEAR
 
 config MD_RAID0
 	tristate "RAID-0 (striping) mode"
+	default m
 	depends on BLK_DEV_MD
 	---help---
 	  If you say Y here, then your multiple devices driver will be able to
@@ -80,6 +82,7 @@ config MD_RAID0
 
 config MD_RAID1
 	tristate "RAID-1 (mirroring) mode"
+	default m
 	depends on BLK_DEV_MD
 	---help---
 	  A RAID-1 set consists of several disk drives which are exact copies
@@ -102,6 +105,7 @@ config MD_RAID1
 
 config MD_RAID10
 	tristate "RAID-10 (mirrored striping) mode"
+	default m
 	depends on BLK_DEV_MD
 	---help---
 	  RAID-10 provides a combination of striping (RAID-0) and
@@ -121,6 +125,7 @@ config MD_RAID10
 
 config MD_RAID456
 	tristate "RAID-4/RAID-5/RAID-6 mode"
+	default m
 	depends on BLK_DEV_MD
 	select RAID6_PQ
 	select LIBCRC32C
@@ -158,6 +163,7 @@ config MD_RAID456
 
 config MD_MULTIPATH
 	tristate "Multipath I/O support"
+	default m
 	depends on BLK_DEV_MD
 	help
 	  MD_MULTIPATH provides a simple multi-path personality for use
@@ -325,7 +331,7 @@ config DM_THIN_PROVISIONING
 config DM_CACHE
        tristate "Cache target (EXPERIMENTAL)"
        depends on BLK_DEV_DM
-       default n
+       default m
        select DM_PERSISTENT_DATA
        select DM_BIO_PRISON
        ---help---
@@ -350,7 +356,7 @@ config DM_CACHE_SMQ
 config DM_ERA
        tristate "Era target (EXPERIMENTAL)"
        depends on BLK_DEV_DM
-       default n
+       default m
        select DM_PERSISTENT_DATA
        select DM_BIO_PRISON
        ---help---
@@ -360,6 +366,7 @@ config DM_ERA
 
 config DM_MIRROR
        tristate "Mirror target"
+       default m
        depends on BLK_DEV_DM
        ---help---
          Allow volume managers to mirror logical volumes, also
@@ -378,6 +385,7 @@ config DM_LOG_USERSPACE
 
 config DM_RAID
        tristate "RAID 1/4/5/6/10 target"
+       default m
        depends on BLK_DEV_DM
        select MD_RAID0
        select MD_RAID1
@@ -412,6 +420,7 @@ config DM_ZERO
 
 config DM_MULTIPATH
 	tristate "Multipath target"
+	default m
 	depends on BLK_DEV_DM
 	# nasty syntax but means make DM_MULTIPATH independent
 	# of SCSI_DH if the latter isn't defined but if
@@ -442,6 +451,7 @@ config DM_MULTIPATH_ST
 
 config DM_DELAY
 	tristate "I/O delaying target"
+	default m
 	depends on BLK_DEV_DM
 	---help---
 	A target that delays reads and/or writes and can send
@@ -457,6 +467,7 @@ config DM_UEVENT
 
 config DM_FLAKEY
        tristate "Flakey target"
+       default m
        depends on BLK_DEV_DM
        ---help---
          A target that intermittently fails I/O for debugging purposes.
@@ -509,6 +520,7 @@ config DM_SWITCH
 
 config DM_LOG_WRITES
 	tristate "Log writes target support"
+	default m
 	depends on BLK_DEV_DM
 	---help---
 	  This device-mapper target takes two devices, one device to use
@@ -525,6 +537,7 @@ config DM_LOG_WRITES
 
 config DM_INTEGRITY
 	tristate "Integrity target support"
+	default m
 	depends on BLK_DEV_DM
 	select BLK_DEV_INTEGRITY
 	select DM_BUFIO

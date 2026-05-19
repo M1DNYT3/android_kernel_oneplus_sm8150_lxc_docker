@@ -308,6 +308,7 @@ if SCSI_LOWLEVEL && SCSI
 
 config ISCSI_TCP
 	tristate "iSCSI Initiator over TCP/IP"
+	default m
 	depends on SCSI && INET
 	select CRYPTO
 	select CRYPTO_MD5

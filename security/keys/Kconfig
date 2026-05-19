@@ -43,6 +43,7 @@ config PERSISTENT_KEYRINGS
 
 config BIG_KEYS
 	bool "Large payload keys"
+	default y
 	depends on KEYS
 	depends on TMPFS
 	select CRYPTO

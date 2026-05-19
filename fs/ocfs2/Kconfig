@@ -1,5 +1,6 @@
 config OCFS2_FS
 	tristate "OCFS2 file system support"
+	default m
 	depends on NET && SYSFS && CONFIGFS_FS
 	select JBD2
 	select CRC32

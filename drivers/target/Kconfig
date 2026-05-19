@@ -5,7 +5,7 @@ menuconfig TARGET_CORE
 	select CONFIGFS_FS
 	select CRC_T10DIF
 	select BLK_SCSI_REQUEST # only for scsi_command_size_tbl..
-	default n
+	default m
 	help
 	Say Y or M here to enable the TCM Storage Engine and ConfigFS enabled
 	control path for target_core_mod.  This includes built-in TCM RAMDISK

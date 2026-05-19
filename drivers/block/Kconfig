@@ -252,6 +252,7 @@ source "drivers/block/drbd/Kconfig"
 
 config BLK_DEV_NBD
 	tristate "Network block device support"
+	default m
 	depends on NET
 	---help---
 	  Saying Y here will allow your computer to be a client for network

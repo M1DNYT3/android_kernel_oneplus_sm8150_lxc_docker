@@ -1,5 +1,6 @@
 config 9P_FS
 	tristate "Plan 9 Resource Sharing Support (9P2000)"
+	default m
 	depends on INET && NET_9P
 	help
 	  If you say Y here, you will get experimental support for

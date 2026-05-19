@@ -150,6 +150,7 @@ EXPORT_SYMBOL_GPL(lockdep_tasklist_lock_is_held);
 
 #ifdef CONFIG_ONEPLUS_TASKLOAD_INFO
 struct sample_window_t sample_window;
+EXPORT_SYMBOL(sample_window);
 #endif
 
 int nr_processes(void)

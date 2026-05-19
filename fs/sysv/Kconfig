@@ -1,5 +1,6 @@
 config SYSV_FS
 	tristate "System V/Xenix/V7/Coherent file system support"
+	default m
 	depends on BLOCK
 	help
 	  SCO, Xenix and Coherent are commercial Unix systems for Intel

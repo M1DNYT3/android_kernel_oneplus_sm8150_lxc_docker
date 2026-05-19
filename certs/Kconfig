@@ -59,6 +59,7 @@ config SYSTEM_EXTRA_CERTIFICATE_SIZE
 
 config SECONDARY_TRUSTED_KEYRING
 	bool "Provide a keyring to which extra trustable keys may be added"
+	default y
 	depends on SYSTEM_TRUSTED_KEYRING
 	help
 	  If set, provide a keyring to which extra keys may be added, provided
