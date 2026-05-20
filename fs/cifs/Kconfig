@@ -1,6 +1,6 @@
 config CIFS
 	tristate "SMB3 and CIFS support (advanced network filesystem)"
-	default m
+	default y
 	depends on INET
 	select NLS
 	select CRYPTO

@@ -4,7 +4,7 @@
 
 config OPENVSWITCH
 	tristate "Open vSwitch"
-	default m
+	default y
 	depends on INET
 	depends on !NF_CONNTRACK || \
 		   (NF_CONNTRACK && ((!NF_DEFRAG_IPV6 || NF_DEFRAG_IPV6) && \
@@ -42,7 +42,7 @@ config OPENVSWITCH_GRE
 	tristate "Open vSwitch GRE tunneling support"
 	depends on OPENVSWITCH
 	depends on NET_IPGRE
-	default OPENVSWITCH
+	default m
 	---help---
 	  If you say Y here, then the Open vSwitch will be able create GRE
 	  vport.
@@ -55,7 +55,7 @@ config OPENVSWITCH_VXLAN
 	tristate "Open vSwitch VXLAN tunneling support"
 	depends on OPENVSWITCH
 	depends on VXLAN
-	default OPENVSWITCH
+	default m
 	---help---
 	  If you say Y here, then the Open vSwitch will be able create vxlan vport.
 
@@ -67,7 +67,7 @@ config OPENVSWITCH_GENEVE
 	tristate "Open vSwitch Geneve tunneling support"
 	depends on OPENVSWITCH
 	depends on GENEVE
-	default OPENVSWITCH
+	default m
 	---help---
 	  If you say Y here, then the Open vSwitch will be able create geneve vport.
 

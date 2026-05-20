@@ -26,7 +26,7 @@ config OCFS2_FS
 config OCFS2_FS_O2CB
 	tristate "O2CB Kernelspace Clustering"
 	depends on OCFS2_FS
-	default y
+	default m
 	help
 	  OCFS2 includes a simple kernelspace clustering package, the OCFS2
 	  Cluster Base.  It only requires a very small userspace component

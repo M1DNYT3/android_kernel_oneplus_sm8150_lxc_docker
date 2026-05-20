@@ -1,6 +1,6 @@
 menuconfig IP_SET
 	tristate "IP set support"
-	default m
+	default y
 	depends on INET && NETFILTER
 	select NETFILTER_NETLINK
 	help

@@ -21,7 +21,7 @@ config RPCSEC_GSS_KRB5
 	depends on CRYPTO_MD5 && CRYPTO_DES && CRYPTO_CBC && CRYPTO_CTS
 	depends on CRYPTO_ECB && CRYPTO_HMAC && CRYPTO_SHA1 && CRYPTO_AES
 	depends on CRYPTO_ARC4
-	default y
+	default m
 	select SUNRPC_GSS
 	help
 	  Choose Y here to enable Secure RPC using the Kerberos version 5

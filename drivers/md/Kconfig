@@ -331,7 +331,7 @@ config DM_THIN_PROVISIONING
 config DM_CACHE
        tristate "Cache target (EXPERIMENTAL)"
        depends on BLK_DEV_DM
-       default m
+       default y
        select DM_PERSISTENT_DATA
        select DM_BIO_PRISON
        ---help---
@@ -366,7 +366,7 @@ config DM_ERA
 
 config DM_MIRROR
        tristate "Mirror target"
-       default m
+       default y
        depends on BLK_DEV_DM
        ---help---
          Allow volume managers to mirror logical volumes, also
@@ -420,7 +420,7 @@ config DM_ZERO
 
 config DM_MULTIPATH
 	tristate "Multipath target"
-	default m
+	default y
 	depends on BLK_DEV_DM
 	# nasty syntax but means make DM_MULTIPATH independent
 	# of SCSI_DH if the latter isn't defined but if
@@ -537,7 +537,7 @@ config DM_LOG_WRITES
 
 config DM_INTEGRITY
 	tristate "Integrity target support"
-	default m
+	default y
 	depends on BLK_DEV_DM
 	select BLK_DEV_INTEGRITY
 	select DM_BUFIO
